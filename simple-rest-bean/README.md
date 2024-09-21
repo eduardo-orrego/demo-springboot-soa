@@ -1,0 +1,2 @@
+## Spring Boot Project Demo - Simple REST Service with H2 Database - Configured with Java-based Beans.
+#### The application configuration will be defined using Java-based Beans and application.properties file
