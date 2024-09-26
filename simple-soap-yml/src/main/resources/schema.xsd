@@ -1,0 +1,35 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.xuaxpedia.org/springboot/soa/soap/simplesoapyml/xml"
+           targetNamespace="http://www.xuaxpedia.org/springboot/soa/soap/simplesoapyml/xml" elementFormDefault="qualified">
+
+    <xs:element name="GetDataXmlRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Code" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CreateDataXmlRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DataXmlResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="DataXml" type="tns:DataXml"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="DataXml">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
