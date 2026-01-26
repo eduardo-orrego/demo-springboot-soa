@@ -19,9 +19,21 @@ public class DemoController {
     @Autowired
     private DemoService demoService;
 
+    /*
+      * ResponseEntity is used to customize the HTTP response,
+      * including status codes and headers.
+      * In this case, we add a custom header "X-Source" to indicate
+      * the data source and return 200 OK if the model is found,
+      * or 404 Not Found if it is not.
+      * This code is for educational/demo purposes only.
+     */
     @GetMapping("/get/{id}")
     public ResponseEntity<DemoModel> getDemo(@PathVariable Long id) {
-        return ResponseEntity.ok(demoService.getModelById(id));
+      return demoService.getModelById(id)
+        .map(user -> ResponseEntity.ok()
+          .header("X-Source", "database")
+          .body(user))
+        .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     /*
@@ -29,6 +41,7 @@ public class DemoController {
      * and no custom headers are required.
      * Spring automatically serializes the object to JSON and applies
      * the status defined by @ResponseStatus.
+     * This code is for educational/demo purposes only.
      */
     @PostMapping("/post")
     @ResponseStatus(HttpStatus.CREATED)
