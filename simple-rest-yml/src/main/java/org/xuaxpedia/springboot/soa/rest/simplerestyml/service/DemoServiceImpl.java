@@ -1,5 +1,6 @@
 package org.xuaxpedia.springboot.soa.rest.simplerestyml.service;
 
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xuaxpedia.springboot.soa.rest.simplerestyml.model.DemoModel;
@@ -12,9 +13,8 @@ public class DemoServiceImpl implements DemoService{
     private DemoRepository demoRepository;
 
     @Override
-    public DemoModel getModelById(Long id) {
-        return demoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Data not found"));
+    public Optional<DemoModel> getModelById(Long id) {
+        return demoRepository.findById(id);
     }
 
     @Override
