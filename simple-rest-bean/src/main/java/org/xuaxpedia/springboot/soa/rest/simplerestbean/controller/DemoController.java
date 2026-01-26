@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.xuaxpedia.springboot.soa.rest.simplerestbean.model.DemoModel;
 import org.xuaxpedia.springboot.soa.rest.simplerestbean.service.DemoService;
@@ -23,9 +24,15 @@ public class DemoController {
         return ResponseEntity.ok(demoService.getModelById(id));
     }
 
+    /*
+     * ResponseEntity is not used because the HTTP status is fixed (201)
+     * and no custom headers are required.
+     * Spring automatically serializes the object to JSON and applies
+     * the status defined by @ResponseStatus.
+     */
     @PostMapping("/post")
-    public ResponseEntity<DemoModel> postDemo(@RequestBody DemoModel demoModel) {
-        DemoModel savedModel = demoService.saveModel(demoModel);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedModel);
+    @ResponseStatus(HttpStatus.CREATED)
+    public DemoModel postDemo(@RequestBody DemoModel demoModel) {
+        return demoService.saveModel(demoModel);
     }
 }
