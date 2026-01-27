@@ -18,8 +18,7 @@ public class RestApiClient {
     }
 
     public DemoModel getFromRestTemplate(Long id) {
-        String url = "http://localhost:8082/api/rest/get/" + id;
-        return restTemplate.getForObject(url, DemoModel.class);
+        return restTemplate.getForObject("/get/{id}", DemoModel.class, id);
     }
 
     public DemoModel getFromWebClient(Long id) {
