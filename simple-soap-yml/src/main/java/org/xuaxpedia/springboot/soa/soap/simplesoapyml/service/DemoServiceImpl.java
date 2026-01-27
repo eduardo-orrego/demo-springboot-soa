@@ -2,12 +2,12 @@ package org.xuaxpedia.springboot.soa.soap.simplesoapyml.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.xuaxpedia.springboot.soa.soap.generated.CreateDataXmlRequest;
+import org.xuaxpedia.springboot.soa.soap.generated.DataXml;
+import org.xuaxpedia.springboot.soa.soap.generated.DataXmlResponse;
+import org.xuaxpedia.springboot.soa.soap.generated.GetDataXmlRequest;
 import org.xuaxpedia.springboot.soa.soap.simplesoapyml.model.DemoModel;
 import org.xuaxpedia.springboot.soa.soap.simplesoapyml.repository.DemoRepository;
-import org.xuaxpedia.springboot.soa.soap.simplesoapyml.xml.CreateDataXmlRequest;
-import org.xuaxpedia.springboot.soa.soap.simplesoapyml.xml.DataXml;
-import org.xuaxpedia.springboot.soa.soap.simplesoapyml.xml.DataXmlResponse;
-import org.xuaxpedia.springboot.soa.soap.simplesoapyml.xml.GetDataXmlRequest;
 
 @Service
 public class DemoServiceImpl implements DemoService {
