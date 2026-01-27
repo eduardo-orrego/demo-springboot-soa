@@ -6,13 +6,13 @@ import org.springframework.web.client.RestTemplate;
 import org.xuaxpedia.springboot.soa.rest.simplerestclient.model.DemoModel;
 
 @Component
-public class DemoApiClient {
+public class RestApiClient {
 
     private final RestTemplate restTemplate;
 
     private final RestClient restClient;
 
-    public DemoApiClient(RestTemplate restTemplate, RestClient restClient) {
+    public RestApiClient(RestTemplate restTemplate, RestClient restClient) {
         this.restTemplate = restTemplate;
         this.restClient = restClient;
     }
