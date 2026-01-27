@@ -1,20 +1,20 @@
 package org.xuaxpedia.springboot.soa.rest.simplerestclient.client;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.reactive.function.client.WebClient;
 import org.xuaxpedia.springboot.soa.rest.simplerestclient.model.DemoModel;
 
 @Component
-public class RestClient {
+public class DemoApiClient {
 
     private final RestTemplate restTemplate;
 
-    private final WebClient webClient;
+    private final RestClient restClient;
 
-    public RestClient(RestTemplate restTemplate, WebClient.Builder webClientBuilder) {
+    public DemoApiClient(RestTemplate restTemplate, RestClient restClient) {
         this.restTemplate = restTemplate;
-        this.webClient = webClientBuilder.baseUrl("http://localhost:8082/api/rest").build();
+        this.restClient = restClient;
     }
 
     public DemoModel getFromRestTemplate(Long id) {
@@ -23,10 +23,9 @@ public class RestClient {
     }
 
     public DemoModel getFromWebClient(Long id) {
-        return webClient.get()
+        return restClient.get()
                 .uri("/get/{id}", id)
                 .retrieve()
-                .bodyToMono(DemoModel.class)
-                .block(); // Blocking, behaves synchronously
+                .body(DemoModel.class);
     }
 }
