@@ -33,10 +33,7 @@ public class DemoController {
       .map(user -> ResponseEntity.ok()
         .header("X-Source", "rest-template-client")
         .body(user))
-      .orElseThrow(() -> new ResponseStatusException(
-        HttpStatus.NOT_FOUND,
-        "DemoModel not found"
-      ));
+      .orElse(ResponseEntity.notFound().build());
   }
 
   /*
