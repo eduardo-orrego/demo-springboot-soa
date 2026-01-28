@@ -19,13 +19,13 @@ public class SoapClient extends WebServiceGatewaySupport {
 
   public GetDataXmlResponse getDataSoapClient(GetDataXmlRequest request) {
     return (GetDataXmlResponse) getWebServiceTemplate()
-      .marshalSendAndReceive("http://localhost:8084/service/demoDataWsdl.wsdl", request,
+      .marshalSendAndReceive("http://localhost:8084/service/demo-data", request,
         new SoapActionCallback("http://www.xuaxpedia.org/springboot/soa/soap/simplesoapyml/xml/GetDataXmlRequest"));
   }
 
   public CreateDataXmlResponse createDataSoapClient(CreateDataXmlRequest request) {
     return (CreateDataXmlResponse) getWebServiceTemplate()
-      .marshalSendAndReceive("http://localhost:8084/service/demoDataWsdl.wsdl", request,
+      .marshalSendAndReceive("http://localhost:8084/service/demo-data", request,
         new SoapActionCallback("http://www.xuaxpedia.org/springboot/soa/soap/simplesoapyml/xml/CreateDataXmlRequest"));
   }
 }
