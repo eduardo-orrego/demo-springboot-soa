@@ -2,22 +2,24 @@ package org.xuaxpedia.springboot.soa.rest.simplesoapclient.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.xuaxpedia.springboot.soa.rest.simplesoapclient.client.SoapClient;
+import org.xuaxpedia.springboot.soa.rest.simplesoapclient.generated.CreateDataXmlRequest;
+import org.xuaxpedia.springboot.soa.rest.simplesoapclient.generated.CreateDataXmlResponse;
+import org.xuaxpedia.springboot.soa.rest.simplesoapclient.generated.GetDataXmlRequest;
+import org.xuaxpedia.springboot.soa.rest.simplesoapclient.generated.GetDataXmlResponse;
 import org.xuaxpedia.springboot.soa.rest.simplesoapclient.model.DemoModel;
-import org.xuaxpedia.springboot.soa.rest.simplesoapclient.wsdl.CreateDataXmlRequest;
-import org.xuaxpedia.springboot.soa.rest.simplesoapclient.wsdl.DataXmlResponse;
-import org.xuaxpedia.springboot.soa.rest.simplesoapclient.wsdl.GetDataXmlRequest;
 
 @Service
 public class DemoServiceImpl implements DemoService {
 
   @Autowired
-  private SoapClientService soapClientService;
+  private SoapClient soapClientService;
 
   @Override
   public DemoModel getDataSoapWST(Long id) {
     GetDataXmlRequest soapRequest = new GetDataXmlRequest();
     soapRequest.setCode(id);
-    DataXmlResponse soapResponse = soapClientService.getDataSoapClientWST(soapRequest);
+    GetDataXmlResponse soapResponse = soapClientService.getDataSoapClient(soapRequest);
     DemoModel demoModel = new DemoModel();
     demoModel.setId(soapResponse.getDataXml().getId());
     demoModel.setDescription(soapResponse.getDataXml().getName());
@@ -28,7 +30,7 @@ public class DemoServiceImpl implements DemoService {
   public DemoModel createDataSoapWST(String name) {
     CreateDataXmlRequest soapRequest = new CreateDataXmlRequest();
     soapRequest.setName(name);
-    DataXmlResponse soapResponse = soapClientService.createDataSoapClientWST(soapRequest);
+    CreateDataXmlResponse soapResponse = soapClientService.createDataSoapClient(soapRequest);
     DemoModel demoModel = new DemoModel();
     demoModel.setId(soapResponse.getDataXml().getId());
     demoModel.setDescription(soapResponse.getDataXml().getName());
