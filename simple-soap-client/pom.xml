@@ -1,91 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.10</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>org.xuaxpedia.springboot.soa.soap</groupId>
-	<artifactId>simple-soap-client</artifactId>
-	<version>1.0.0</version>
-	<name>simple-soap-client</name>
-	<description>Spring Boot Demo Project - Simple REST Service - Simple SOAP Client</description>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
-	<properties>
-		<java.version>25</java.version>
-	</properties>
-	<dependencies>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.10</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>org.xuaxpedia.springboot.soa.soap</groupId>
+    <artifactId>simple-soap-client</artifactId>
+    <version>1.0.0</version>
+    <name>simple-soap-client</name>
+    <description>Spring Boot Demo Project - Simple REST Service - Simple SOAP Client</description>
+    <url/>
+    <licenses>
+        <license/>
+    </licenses>
+    <developers>
+        <developer/>
+    </developers>
+    <scm>
+        <connection/>
+        <developerConnection/>
+        <tag/>
+        <url/>
+    </scm>
+    <properties>
+        <java.version>25</java.version>
+    </properties>
+    <!--CXF version alignment-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-bom</artifactId>
+                <version>4.1.4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
         <!-- WebServiceTemplate for SOAP Client-->
-        <!-- tag::dependency[] -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web-services</artifactId>
-			<!-- Disable after using the jaxws-maven-plugin plugin and being able to run the application-->
-			<!--<exclusions>-->
-			<!--	<exclusion>-->
-			<!--		<groupId>org.springframework.boot</groupId>-->
-			<!--		<artifactId>spring-boot-starter-tomcat</artifactId>-->
-			<!--	</exclusion>-->
-			<!--</exclusions>-->
         </dependency>
-        <!-- end::dependency[] -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<!--tag::wsdl[] -->
-            <!--Generate Domain Objects Based on a WSDL-->
-			<!--<plugin>
-                <groupId>com.sun.xml.ws</groupId>
-                <artifactId>jaxws-maven-plugin</artifactId>
-                <version>3.0.0</version>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <!-- CXF runtime dependencies (versions come from BOM) -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!-- Generate SOAP client (stubs + JAXB) from WSDL -->
+            <plugin>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-codegen-plugin</artifactId>
+                <version>4.0.4</version>
                 <executions>
                     <execution>
+                        <id>generate-soap-client</id>
+                        <phase>generate-sources</phase>
                         <goals>
-                            <goal>wsimport</goal>
+                            <goal>wsdl2java</goal>
                         </goals>
+                        <configuration>
+                            <wsdlOptions>
+                                <wsdlOption>
+                                    <wsdl>http://localhost:8084/service/demo-data/demoDataWsdl.wsdl</wsdl>
+                                    <extraargs>
+                                        <!-- Package for generated classes -->
+                                        <extraarg>-p</extraarg>
+                                        <extraarg>org.xuaxpedia.springboot.soa.rest.simplesoapclient.generated</extraarg>
+                                    </extraargs>
+                                </wsdlOption>
+                            </wsdlOptions>
+                            <sourceRoot>${project.build.directory}/generated-sources/cxf</sourceRoot>
+                            <encoding>UTF-8</encoding>
+                        </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <packageName>org.xuaxpedia.springboot.soa.rest.simplesoapclient.wsdl</packageName>
-                    <wsdlUrls>
-                        <wsdlUrl>http://localhost:8084/service/demoDataWsdl.wsdl</wsdlUrl>
-                    </wsdlUrls>
-                    <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
-                    <destDir>${basedir}/src/main/java/org/xuaxpedia/springboot/soa/rest/simplesoapclient/wsdl</destDir>
-                    <extension>true</extension>
-                </configuration>
-            </plugin>-->
-            <!-- end::wsdl[] -->
-		</plugins>
-	</build>
+            </plugin>
+        </plugins>
+    </build>
 </project>
