@@ -6,8 +6,9 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import org.xuaxpedia.springboot.soa.soap.simplesoapyml.generated.CreateDataXmlRequest;
-import org.xuaxpedia.springboot.soa.soap.simplesoapyml.generated.DataXmlResponse;
+import org.xuaxpedia.springboot.soa.soap.simplesoapyml.generated.CreateDataXmlResponse;
 import org.xuaxpedia.springboot.soa.soap.simplesoapyml.generated.GetDataXmlRequest;
+import org.xuaxpedia.springboot.soa.soap.simplesoapyml.generated.GetDataXmlResponse;
 import org.xuaxpedia.springboot.soa.soap.simplesoapyml.service.DemoService;
 
 @Endpoint
@@ -19,13 +20,13 @@ public class DemoEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetDataXmlRequest")
     @ResponsePayload
-    public DataXmlResponse getData(@RequestPayload GetDataXmlRequest request) {
+    public GetDataXmlResponse getData(@RequestPayload GetDataXmlRequest request) {
         return demoService.getModelById(request);
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "CreateDataXmlRequest")
     @ResponsePayload
-    public DataXmlResponse createData(@RequestPayload CreateDataXmlRequest request) {
+    public CreateDataXmlResponse createData(@RequestPayload CreateDataXmlRequest request) {
         return demoService.saveModel(request);
     }
 }

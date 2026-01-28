@@ -1,12 +1,13 @@
 package org.xuaxpedia.springboot.soa.soap.simplesoapyml.service;
 
 import org.xuaxpedia.springboot.soa.soap.simplesoapyml.generated.CreateDataXmlRequest;
-import org.xuaxpedia.springboot.soa.soap.simplesoapyml.generated.DataXmlResponse;
+import org.xuaxpedia.springboot.soa.soap.simplesoapyml.generated.CreateDataXmlResponse;
 import org.xuaxpedia.springboot.soa.soap.simplesoapyml.generated.GetDataXmlRequest;
+import org.xuaxpedia.springboot.soa.soap.simplesoapyml.generated.GetDataXmlResponse;
 
 public interface DemoService {
-    DataXmlResponse getModelById(GetDataXmlRequest request);
+    GetDataXmlResponse getModelById(GetDataXmlRequest request);
 
-    DataXmlResponse saveModel(CreateDataXmlRequest request);
+    CreateDataXmlResponse saveModel(CreateDataXmlRequest request);
 }
 
