@@ -5,9 +5,9 @@ import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
-import org.xuaxpedia.springboot.soa.soap.generated.CreateDataXmlRequest;
-import org.xuaxpedia.springboot.soa.soap.generated.DataXmlResponse;
-import org.xuaxpedia.springboot.soa.soap.generated.GetDataXmlRequest;
+import org.xuaxpedia.springboot.soa.soap.simplesoapyml.generated.CreateDataXmlRequest;
+import org.xuaxpedia.springboot.soa.soap.simplesoapyml.generated.DataXmlResponse;
+import org.xuaxpedia.springboot.soa.soap.simplesoapyml.generated.GetDataXmlRequest;
 import org.xuaxpedia.springboot.soa.soap.simplesoapyml.service.DemoService;
 
 @Endpoint

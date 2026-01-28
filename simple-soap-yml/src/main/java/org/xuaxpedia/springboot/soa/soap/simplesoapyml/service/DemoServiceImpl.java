@@ -2,10 +2,10 @@ package org.xuaxpedia.springboot.soa.soap.simplesoapyml.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.xuaxpedia.springboot.soa.soap.generated.CreateDataXmlRequest;
-import org.xuaxpedia.springboot.soa.soap.generated.DataXml;
-import org.xuaxpedia.springboot.soa.soap.generated.DataXmlResponse;
-import org.xuaxpedia.springboot.soa.soap.generated.GetDataXmlRequest;
+import org.xuaxpedia.springboot.soa.soap.simplesoapyml.generated.CreateDataXmlRequest;
+import org.xuaxpedia.springboot.soa.soap.simplesoapyml.generated.DataXml;
+import org.xuaxpedia.springboot.soa.soap.simplesoapyml.generated.DataXmlResponse;
+import org.xuaxpedia.springboot.soa.soap.simplesoapyml.generated.GetDataXmlRequest;
 import org.xuaxpedia.springboot.soa.soap.simplesoapyml.model.DemoModel;
 import org.xuaxpedia.springboot.soa.soap.simplesoapyml.repository.DemoRepository;
 

@@ -85,7 +85,7 @@
 					<sources>
 						<source>${basedir}/src/main/resources/schema.xsd</source>
 					</sources>
-					<packageName>org.xuaxpedia.springboot.soa.soap.generated</packageName>
+					<packageName>org.xuaxpedia.springboot.soa.soap.simplesoapyml.generated</packageName>
 					<outputDirectory>${project.build.directory}/generated-sources/jaxb</outputDirectory>
 					<clearOutputDir>true</clearOutputDir>
 					<encoding>UTF-8</encoding>
