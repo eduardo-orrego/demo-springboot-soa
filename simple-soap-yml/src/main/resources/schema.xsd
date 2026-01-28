@@ -17,7 +17,15 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="DataXmlResponse">
+    <xs:element name="GetDataXmlResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="DataXml" type="tns:DataXml"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CreateDataXmlResponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="DataXml" type="tns:DataXml"/>
