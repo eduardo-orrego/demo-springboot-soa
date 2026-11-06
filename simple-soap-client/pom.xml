@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.10</version>
+        <version>4.1.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.xuaxpedia.springboot.soa.soap</groupId>
@@ -57,7 +57,7 @@
             <plugin>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-codegen-plugin</artifactId>
-                <version>4.0.4</version>
+                <version>4.2.4</version>
                 <executions>
                     <execution>
                         <id>generate-soap-client</id>
@@ -76,7 +76,8 @@
                                     </extraargs>
                                 </wsdlOption>
                             </wsdlOptions>
-                            <sourceRoot>${project.build.directory}/generated-sources/cxf</sourceRoot>
+                            <!--<sourceRoot> Usa el valor por defecto que tambien se auto-registra-->
+                            <!--<sourceRoot>${project.build.directory}/generated-sources/cxf</sourceRoot>-->
                             <encoding>UTF-8</encoding>
                         </configuration>
                     </execution>
