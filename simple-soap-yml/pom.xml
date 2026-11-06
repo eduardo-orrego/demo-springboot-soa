@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.10</version>
+		<version>4.1.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.xuaxpedia.springboot.soa.soap</groupId>
@@ -70,7 +70,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>jaxb2-maven-plugin</artifactId>
-				<version>4.1.0</version>
+				<version>4.2.0</version>
 				<executions>
 					<execution>
 						<id>generate-jaxb</id>
@@ -85,7 +85,14 @@
 						<source>${basedir}/src/main/resources/schema.xsd</source>
 					</sources>
 					<packageName>org.xuaxpedia.springboot.soa.soap.simplesoapyml.generated</packageName>
-					<outputDirectory>${project.build.directory}/generated-sources/jaxb</outputDirectory>
+					<!--
+                          NOTA (MIGRACIÓN SPRING BOOT 4 / JAXB 4.x):
+                          No definir <outputDirectory> de forma personalizada.
+                          Las versiones modernas del plugin solo registran automáticamente la ruta por defecto:
+                          ${project.build.directory}/generated-sources/xjc
+                          Si se personaliza la ruta, el IDE dejará de reconocer las clases generadas.
+                        -->
+					<!-- <outputDirectory>${project.build.directory}/generated-sources/jaxb</outputDirectory> -->
 					<clearOutputDir>true</clearOutputDir>
 					<encoding>UTF-8</encoding>
 				</configuration>
