@@ -96,17 +96,17 @@ Spring Boot, and curl.
 
 ### Generate SOAP Sources (WSDL → Java)
 ```
-mvn clean generate-sources
+./mvnw clean generate-sources
 ```
 This command uses the Maven JAX-WS plugin to generate Java classes from the WSDL file located in src/main/resources.
 ### Build the Application
 ```
-mvn clean package
+./mvnw clean package
 ```
 This command compiles the source code, runs tests, and packages the application into an executable JAR file.
 ### Run the Application
 ```
-mvn spring-boot:run
+./mvnw spring-boot:run
 ```
 This command starts the Spring Boot application, which will listen for SOAP requests on port 8084.
 ### Test the SOAP Service with curl
